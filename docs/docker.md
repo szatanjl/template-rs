@@ -44,10 +44,22 @@ Configuration
 `docker build` can be configured by setting following variables
 via CLI `--build-arg` flag:
 
+- `CARGO`
+
+  Rust package manager to use.  Default: `cargo`
+
+- `CARGO_FLAGS`
+
+  Options passed to `${CARGO} build -r`.  Default: empty
+
+- `CARGO_FETCH_FLAGS`
+
+  Options passed to `${CARGO} fetch`.  Default: empty
+
 - `BASEIMG`
 
   Default base image used for docker build stages.
-  Default: `alpine:latest`
+  Default: `rust:alpine`
 
 - `BUILDIMG`
 

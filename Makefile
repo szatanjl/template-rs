@@ -7,10 +7,19 @@ TARFLAGS = -cf $(PKGNAME).tar
 ZIP = gzip
 ZIPFLAGS =
 
+CARGO = cargo
+CARGO_BUILD_FLAGS =
+CARGO_FETCH_FLAGS =
+CARGO_RUN_FLAGS =
+CARGO_CLEAN_FLAGS =
+
 RUN_FLAGS =
 
 DOCKER = docker
-DOCKER_FLAGS =
+DOCKER_FLAGS = \
+	--build-arg CARGO='$(CARGO)' \
+	--build-arg CARGO_BUILD_FLAGS='$(CARGO_BUILD_FLAGS)' \
+	--build-arg CARGO_FETCH_FLAGS='$(CARGO_FETCH_FLAGS)'
 DOCKER_RUN_FLAGS = -it --rm --init --name $(DOCKERNAME)
 DOCKER_CMD =
 
@@ -38,25 +47,31 @@ all:
 -include config.mk
 
 
-.PHONY: all bin lib
+.PHONY: all bin lib deps
 .PHONY: dist version release
 .PHONY: install install-bin install-lib install-man-bin install-man-lib
 .PHONY: uninstall uninstall-bin uninstall-lib
 .PHONY: uninstall-man-bin uninstall-man-lib
 .PHONY: check test lint fmt fmt-check
-.PHONY: run dev
+.PHONY: run
 .PHONY: docker docker-run
 .PHONY: clean distclean cleanall
 
-all: bin lib
+all:
+	$(CARGO) build $(CARGO_BUILD_FLAGS)
 
-bin: hello
+bin:
+	$(CARGO) build --bins $(CARGO_BUILD_FLAGS)
 
 lib:
+	$(CARGO) build --lib $(CARGO_BUILD_FLAGS)
+
+deps:
+	$(CARGO) fetch $(CARGO_FETCH_FLAGS)
 
 dist:
 	mkdir $(PKGNAME)
-	find . ! -name . -prune ! -name .git \
+	find . ! -name . -prune ! -name .git ! -name target \
 		! -name $(PKGNAME) ! -name '$(NAME)-*' \
 		-exec cp -RPf {} $(PKGNAME) \;
 	cd $(PKGNAME) && $(MAKE) distclean
@@ -76,9 +91,9 @@ release: make/release.sh
 
 install: install-bin install-lib install-man-bin install-man-lib
 
-install-bin: hello
+install-bin: target/release/hello
 	mkdir -p $(DESTDIR)$(bindir)
-	cp -f hello $(DESTDIR)$(bindir)
+	cp -f target/release/hello $(DESTDIR)$(bindir)
 	chmod +x $(DESTDIR)$(bindir)/hello
 
 install-lib:
@@ -122,11 +137,8 @@ fmt: make/fmt.sh
 fmt-check: make/fmt-check.sh
 	./$<
 
-run: hello
-	./$< $(RUN_FLAGS)
-
-dev: src/main.sh
-	$(SHELL) $< $(RUN_FLAGS)
+run:
+	$(CARGO) run $(CARGO_RUN_FLAGS) -- $(RUN_FLAGS)
 
 docker:
 	$(DOCKER) build $(DOCKER_FLAGS) -t $(DOCKERNAME) .
@@ -136,15 +148,14 @@ docker-run:
 
 clean:
 	rm -Rf $(PKGNAME).* $(PKGNAME) $(NAME)-*
-	rm -f hello
+	$(CARGO) clean $(CARGO_CLEAN_FLAGS)
 
 distclean: clean
-	rm -f config.mk
+	rm -f Cargo.lock config.mk
 
 cleanall: distclean
 	rm -f version.mk
 
 
-hello: src/main.sh
-	cp -f $< $@
-	chmod +x $@
+target/release/hello:
+	$(CARGO) build --bins -r $(CARGO_BUILD_FLAGS)
