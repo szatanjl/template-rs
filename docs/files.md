@@ -3,6 +3,10 @@ Files
 
     ./
     |-- .git/
+    |-- .github/
+    |   |-- actions/
+    |   |-- workflows/
+    |   `-- ...
     |-- docs/
     |   |-- CONTRIBUTING.md
     |   |-- SECURITY.md
@@ -118,6 +122,18 @@ Versioning and Releasing
 - `version.mk`
 
   Generated version information
+
+
+CI/CD
+-----
+
+- `.github/workflows/`
+
+  CI/CD workflows
+
+- `.github/actions/`
+
+  CI/CD actions used by workflows
 
 
 Repository

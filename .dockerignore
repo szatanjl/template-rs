@@ -13,3 +13,7 @@
 # Ignore git files
 /.git
 /.gitignore
+
+# Ignore CI/CD files
+/.github/actions
+/.github/workflows
