@@ -1,3 +1,6 @@
+# Ignore built files
+/hello
+
 # Ignore documentation
 /docs
 /README.md

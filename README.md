@@ -10,7 +10,7 @@ To begin:
 1. Change `project_name` in Makefile
 2. Update LICENSE and all mentions of it (`grep LICENSE`)
 3. Update contact information and email addresses (`grep @example.com`)
-4. Edit this README
+4. Edit this README and replace all `<...>` placeholders
 5. Start your project
 
 Note: Project name must only contain ASCII lowercase letters, digits,
@@ -55,6 +55,33 @@ How It Works?
 -------------
 
 How does it work?
+
+
+Development
+-----------
+
+1. Install required dependencies
+
+   - sh
+   - make
+   - git
+
+2. Install optional dependencies
+
+   - docker: Build docker image
+
+3. Clone repository
+
+       git clone --recurse-submodules https://<URL>/<PKGNAME>.git
+
+4. [Configure make](docs/make.md#configuration)
+
+5. Build and run project
+
+       make
+       ./hello
+
+See [documentation](docs/index.md#development) for details.
 
 
 Questions

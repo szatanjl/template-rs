@@ -7,7 +7,15 @@ Targets
 
 - `make [all]`
 
-  Build project
+  Build project binaries and libraries
+
+- `make bin`
+
+  Build binaries
+
+- `make lib`
+
+  Build libraries
 
 - `make docker`
 

@@ -9,6 +9,10 @@ Files
     |   |-- SUPPORT.md
     |   |-- index.md
     |   `-- ...
+    |-- man/
+    |-- src/
+    |   |-- main.sh
+    |   `-- ...
     |-- .dockerignore
     |-- .gitignore
     |-- Dockerfile
@@ -16,6 +20,18 @@ Files
     |-- Makefile
     |-- README.md
     `-- config.mk (optional)
+
+
+Source Code
+-----------
+
+- `src/`
+
+  Source code
+
+- `src/main.sh`
+
+  Program entry point
 
 
 Documentation
@@ -48,6 +64,10 @@ Documentation
 - `docs/SUPPORT.md`
 
   How to get support
+
+- `man/`
+
+  Man pages
 
 
 Build

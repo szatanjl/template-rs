@@ -36,3 +36,19 @@ Common Commands
 - `docker load -i <FILENAME>`
 
   Import docker image from a file
+
+
+Configuration
+-------------
+
+`docker build` can be configured by setting following variables
+via CLI `--build-arg` flag:
+
+- `BASEIMG`
+
+  Default base image used for docker build stages.
+  Default: `alpine:latest`
+
+- `BUILDIMG`
+
+  Image used for building the project.  Default: `${BASEIMG}`
