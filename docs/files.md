@@ -24,6 +24,7 @@ Files
     |-- tests/
     |-- .dockerignore
     |-- .gitignore
+    |-- Cargo.toml
     |-- Dockerfile
     |-- LICENSE
     |-- Makefile
@@ -86,6 +87,10 @@ Documentation
 
 Build
 -----
+
+- `Cargo.toml`
+
+  Rust project metadata and dependencies
 
 - `make/`
 
