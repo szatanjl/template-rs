@@ -181,6 +181,47 @@ jobs:
           description: Status of binary release
           values: ${{ steps.upload.outcome }}
 
+  crate:
+    name: Release Cargo Crate
+    needs:
+      - pre
+      - check
+    if: needs.pre.outputs.continue != 'false' &&
+        ((success() && needs.check.outputs.outcome == 'success') ||
+         (inputs.skip_check && needs.pre.result == 'success'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Prepare Job
+        run: |
+          git clone -n --filter=tree:0 --progress -- "${REPO}" .
+          git sparse-checkout set --no-cone .github/actions
+          git checkout --progress
+      - name: Set Status Pending
+        uses: ./.github/actions/status-set
+        with:
+          sha: ${{ needs.pre.outputs.sha }}
+          name: crate
+          description: Status of cargo crate release
+      - name: Build Cargo Crate
+        uses: ./.github/actions/make-crate
+        with:
+          sha: ${{ needs.pre.outputs.sha }}
+      - name: Upload Cargo Crate
+        id: upload
+        uses: ./.github/actions/release-files
+        with:
+          tag: ${{ inputs.tag || github.ref_name }}
+          files: ./crate/target/package/*.crate
+      - name: Set Status Done
+        if: always()
+        uses: ./.github/actions/status-set
+        with:
+          sha: ${{ needs.pre.outputs.sha }}
+          name: crate
+          description: Status of cargo crate release
+          values: ${{ steps.upload.outcome }}
+
   docker:
     name: Release Docker Image
     needs:
@@ -188,11 +229,13 @@ jobs:
       - check
       - src
       - bin
+      - crate
     if: needs.pre.outputs.continue != 'false' &&
         ((success() && needs.check.outputs.outcome == 'success') ||
          (inputs.skip_check && needs.pre.result == 'success')) &&
         needs.src.result == 'success' &&
-        needs.bin.result == 'success'
+        needs.bin.result == 'success' &&
+        needs.crate.result == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -232,6 +275,7 @@ jobs:
       - pre
       - src
       - bin
+      - crate
       - docker
     if: always() && needs.pre.outputs.continue != 'false'
     runs-on: ubuntu-latest
@@ -248,6 +292,7 @@ jobs:
         if: needs.pre.outputs.release == 'success' &&
             (needs.src.result != 'success' ||
              needs.bin.result != 'success' ||
+             needs.crate.result != 'success' ||
              needs.docker.result != 'success')
         uses: ./.github/actions/release-delete
         with:
@@ -263,4 +308,5 @@ jobs:
           values: >
             ${{ needs.src.result }}
             ${{ needs.bin.result }}
+            ${{ needs.crate.result }}
             ${{ needs.docker.result }}
