@@ -7,7 +7,7 @@ a standardized structure, build process, and development workflow.
 
 To begin:
 
-1. Change `project_name` in Makefile
+1. Change `project_name` in Makefile, .dockerignore, and .gitignore
 2. Update LICENSE and all mentions of it (`grep LICENSE`)
 3. Update contact information and email addresses (`grep @example.com`)
 4. Edit this README and replace all `<...>` placeholders

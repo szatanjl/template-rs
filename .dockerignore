@@ -1,6 +1,10 @@
 # Ignore built files
 /hello
 
+# Ignore dist files
+/project_name
+/project_name.*
+
 # Ignore documentation
 /docs
 /README.md

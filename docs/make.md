@@ -17,6 +17,10 @@ Targets
 
   Build libraries
 
+- `make dist`
+
+  Build distribution tarball
+
 - `make docker`
 
   Build docker image
@@ -44,9 +48,29 @@ in config.mk file or via CLI:
 
   Project name
 
+- `PKGNAME`
+
+  Distribution tarball filename without extension.  Default: `${NAME}`
+
 - `DOCKERNAME`
 
   Docker image name.  Default: `${NAME}`
+
+- `TAR`
+
+  Archive utility to use.  Default `tar`
+
+- `TARFLAGS`
+
+  Options passed to the archive utility.  Default: `-cf ${PKGNAME}.tar`
+
+- `ZIP`
+
+  Compression utility to use.  Default: `gzip`
+
+- `ZIPFLAGS`
+
+  Options passed to the compression utility.  Default: empty
 
 - `DOCKER`
 
