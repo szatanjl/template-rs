@@ -10,6 +10,7 @@ ZIPFLAGS =
 CARGO = cargo
 CARGO_BUILD_FLAGS =
 CARGO_FETCH_FLAGS =
+CARGO_PKG_FLAGS =
 CARGO_RUN_FLAGS =
 CARGO_CLEAN_FLAGS =
 
@@ -48,7 +49,7 @@ all:
 
 
 .PHONY: all bin lib deps
-.PHONY: dist version release
+.PHONY: dist crate version release
 .PHONY: install install-bin install-lib install-man-bin install-man-lib
 .PHONY: uninstall uninstall-bin uninstall-lib
 .PHONY: uninstall-man-bin uninstall-man-lib
@@ -78,6 +79,9 @@ dist:
 	$(TAR) $(TARFLAGS) $(PKGNAME)
 	$(ZIP) $(ZIPFLAGS) $(PKGNAME).tar
 	rm -Rf $(PKGNAME).tar $(PKGNAME)
+
+crate:
+	$(CARGO) package $(CARGO_PKG_FLAGS)
 
 version: make/version.sh
 	{ \
