@@ -25,6 +25,10 @@ Workflows
 
   Deploy commit
 
+- `clear-statuses`
+
+  Clear statuses
+
 
 Helper Actions
 --------------
@@ -44,6 +48,10 @@ Helper Actions
 - `status-set`
 
   Set commit status (or skip if status already set)
+
+- `status-clear`
+
+  Clear statuses
 
 - `status-inherit`
 
