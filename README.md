@@ -8,8 +8,9 @@ a standardized structure, build process, and development workflow.
 To begin:
 
 1. Update LICENSE and all mentions of it (`grep LICENSE`)
-2. Edit this README
-3. Start your project
+2. Update contact information and email addresses (`grep @example.com`)
+3. Edit this README
+4. Start your project
 
 
 Quick Start
@@ -34,6 +35,9 @@ How does it work?
 
 Contributing
 ------------
+
+Found a security vulnerability?
+Read [security policy](docs/SECURITY.md).
 
 Found a bug?  Missing a feature?  Want to help?
 Read [contribution guidelines](docs/CONTRIBUTING.md).

@@ -11,6 +11,17 @@ Participate in discussions.
 Submit a new [issue](#issues) or open a [pull request](#pull-requests).
 
 
+Reporting Security Vulnerability
+--------------------------------
+
+If you discover a security issue, please bring it to our attention right
+away.  **DO NOT** report security vulnerabilities through public issues,
+discussions, or pull requests.
+Send your report privately to <security@example.com> instead.
+
+See [security policy](SECURITY.md) for details.
+
+
 Issues
 ------
 

@@ -5,6 +5,7 @@ Files
     |-- .git/
     |-- docs/
     |   |-- CONTRIBUTING.md
+    |   |-- SECURITY.md
     |   |-- index.md
     |   `-- ...
     |-- LICENSE
@@ -33,6 +34,10 @@ Documentation
 - `docs/CONTRIBUTING.md`
 
   Contribution guidelines
+
+- `docs/SECURITY.md`
+
+  Security policy
 
 
 Repository
