@@ -10,6 +10,7 @@ Files
     |   |-- index.md
     |   `-- ...
     |-- LICENSE
+    |-- Makefile
     `-- README.md
 
 
@@ -43,6 +44,14 @@ Documentation
 - `docs/SUPPORT.md`
 
   How to get support
+
+
+Build
+-----
+
+- `Makefile`
+
+  Build instructions for make utility
 
 
 Repository
