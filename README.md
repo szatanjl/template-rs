@@ -76,10 +76,9 @@ Development
 
 4. [Configure make](docs/make.md#configuration)
 
-5. Build and run project
+5. Run project in development mode
 
-       make
-       make run
+       make dev
 
 See [documentation](docs/index.md#development) for details.
 

@@ -23,7 +23,7 @@ all:
 
 .PHONY: all bin lib
 .PHONY: dist version release
-.PHONY: run
+.PHONY: run dev
 .PHONY: docker docker-run
 .PHONY: clean distclean cleanall
 
@@ -55,6 +55,9 @@ release: make/release.sh
 
 run: hello
 	./$< $(RUN_FLAGS)
+
+dev: src/main.sh
+	$(SHELL) $< $(RUN_FLAGS)
 
 docker:
 	$(DOCKER) build $(DOCKER_FLAGS) -t $(DOCKERNAME) .
