@@ -29,6 +29,14 @@ Targets
 
   Create new release
 
+- `make check`
+
+  Run tests
+
+- `make test`
+
+  Run tests
+
 - `make run`
 
   Build and run project
