@@ -32,6 +32,13 @@ How It Works?
 How does it work?
 
 
+Contributing
+------------
+
+Found a bug?  Missing a feature?  Want to help?
+Read [contribution guidelines](docs/CONTRIBUTING.md).
+
+
 License
 -------
 

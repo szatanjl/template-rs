@@ -4,6 +4,7 @@ Files
     ./
     |-- .git/
     |-- docs/
+    |   |-- CONTRIBUTING.md
     |   |-- index.md
     |   `-- ...
     |-- LICENSE
@@ -28,6 +29,10 @@ Documentation
 - `docs/index.md`
 
   Documentation entry point
+
+- `docs/CONTRIBUTING.md`
+
+  Contribution guidelines
 
 
 Repository

@@ -18,6 +18,14 @@ Development
 -----------
 
 - [Files](files.md)
+- [Git discipline](git.md)
+- [Style guides](styleguides.md)
+
+
+Contributing and Support
+------------------------
+
+- [Contribution guidelines](CONTRIBUTING.md)
 
 
 License
