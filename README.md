@@ -79,7 +79,7 @@ Development
 5. Build and run project
 
        make
-       ./hello
+       make run
 
 See [documentation](docs/index.md#development) for details.
 

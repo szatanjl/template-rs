@@ -7,6 +7,8 @@ TARFLAGS = -cf $(PKGNAME).tar
 ZIP = gzip
 ZIPFLAGS =
 
+RUN_FLAGS =
+
 DOCKER = docker
 DOCKER_FLAGS =
 DOCKER_RUN_FLAGS = -it --rm --init --name $(DOCKERNAME)
@@ -21,6 +23,7 @@ all:
 
 .PHONY: all bin lib
 .PHONY: dist version release
+.PHONY: run
 .PHONY: docker docker-run
 .PHONY: clean distclean cleanall
 
@@ -49,6 +52,9 @@ version: make/version.sh
 
 release: make/release.sh
 	./$<
+
+run: hello
+	./$< $(RUN_FLAGS)
 
 docker:
 	$(DOCKER) build $(DOCKER_FLAGS) -t $(DOCKERNAME) .
