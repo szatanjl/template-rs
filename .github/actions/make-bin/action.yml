@@ -1,0 +1,39 @@
+name: Build Binary Tarballs
+description: Build Binary Tarballs
+
+
+inputs:
+  sha:
+    description: Commit hash
+    default: ${{ github.sha }}
+  name:
+    description: Package name
+    default: ${{ github.event.repository.name }}
+  tag:
+    description: Package version tag
+    default: ${{ github.ref_name }}
+
+
+runs:
+  using: composite
+  steps:
+    - uses: ./.github/actions/make-version
+      with:
+        sha: ${{ inputs.sha }}
+        dir: src
+    - shell: bash
+      working-directory: src
+      run: |
+        make
+        make DESTDIR="../${NAME}" prefix=/usr sysconfdir=/etc \
+             localstatedir=/var runstatedir=/run install
+      env:
+        NAME: ${{ inputs.name }}-${{ inputs.tag }}
+    - shell: bash
+      run: |
+        tar -cf "./${NAME}.bin.tar" "./${NAME}"
+        gzip -9k "./${NAME}.bin.tar"
+        zstd -19k "./${NAME}.bin.tar"
+        zip -9r "./${NAME}.bin.zip" "./${NAME}"
+      env:
+        NAME: ${{ inputs.name }}-${{ inputs.tag }}

@@ -37,6 +37,46 @@ human and machine friendly.
   May only require changing a hyphen ('-') to an underscore ('\_')
 
 
+Installation
+------------
+
+[Download][releases] pre-compiled binary package.
+See [changelog](docs/CHANGELOG.md) for details.
+
+[releases]: https://<URL>/<PKGNAME>/releases
+
+
+Build and Install from Source
+-----------------------------
+
+1. Install build dependencies (these can be removed after build)
+
+   - make
+
+2. Install runtime dependencies
+
+   - sh
+
+3. Download and extract source code
+
+       # packages available also in .tar.zst and .zip formats
+       curl -LO https://<URL>/<PKGNAME>/download/<PKGNAME>.src.tar.gz
+       tar -xzf <PKGNAME>.src.tar.gz
+
+4. Build and install
+
+       cd <PKGNAME>
+       make
+       make install
+
+
+Run Using Docker
+----------------
+
+    docker pull <REGISTRY>/<PKGNAME>
+    docker run -it --rm <REGISTRY>/<PKGNAME>
+
+
 Quick Start
 -----------
 

@@ -4,7 +4,6 @@ PROGNAME=release.sh
 CHLOG=docs/CHANGELOG.md
 CHLOG_TMP=.git/CHANGELOG.tmp.md
 CHLOG_NEW=.git/CHANGELOG.new.md
-CHLOG_DBG=.git/CHANGELOG.dbg.txt
 EDITOR=${VISUAL:-${EDITOR:-vi}}
 export TZ=UTC0
 
@@ -16,13 +15,13 @@ export TZ=UTC0
 # VERSION - version number to increase
 #       <TYPE>    <NO> <VERSION>
 MAP_TYPE_TO_VER=$(printf '/^\(revert: \)*%s\((.*)\)*: /i#1-VER-%s#\n' \
-	'feat'      '2 MINOR' \
-	'change'    '2 MINOR' \
-	'deprecate' '2 MINOR' \
-	'remove'    '2 MINOR' \
-	'fix'       '3 PATCH' \
-	'security'  '3 PATCH' \
-	'perf'      '3 PATCH' \
+	'feat'      '2-MINOR' \
+	'change'    '2-MINOR' \
+	'deprecate' '2-MINOR' \
+	'remove'    '2-MINOR' \
+	'fix'       '3-PATCH' \
+	'security'  '3-PATCH' \
+	'perf'      '3-PATCH' \
 )
 
 # Map commit type to changelog section.
@@ -78,21 +77,18 @@ MAP_TYPE_TO_COMMIT=$(printf 's|^%s\((.*)\)*!*: |#3-DEV-%s#%s|\n' \
 	'revert: chore'    '6 Maintenance' 'Revert: ' \
 )
 
+EOF_COMMENT='\
+\
+<!-- EOF: Text above this comment will become part of          -->\
+<!-- git commit message and CHANGELOG.                         -->\
+<!-- Text below this comment will only become part of          -->\
+<!-- git commit message and will NOT become part of CHANGELOG. -->'
+
 
 error()
 {
 	printf '%s: %s\n' "${PROGNAME}" "$*" >&2
 	exit 1
-}
-
-debug()
-{
-	if [ -n "${DEBUG-}" ]
-	then
-		tee -- "${1}"
-	else
-		cat
-	fi
 }
 
 # Bump version in files: manpages, package.json, Cargo.toml, etc,
@@ -137,25 +133,25 @@ gen_chlog()
 		fi
 	fi
 
-	date=$(git show -s --format='%cd' \
-		--date="format-local:%Y-%m-%d")
+	date=$(git log -1 --format='%cd' \
+		--date="format-local:%Y-%m-%d" "${ref}" --)
 
 	# Assuming no commit subject starts with '#' character,
 	# otherwise below sed script will not work correctly.
 	git log --reverse --pretty='%s' "${prev}${prev:+..}${ref}" -- |
 	sed '
 		# Bump at least BUILD version number
-		1i#1-VER-4 BUILD# <!-- NOBUMP -->
+		1i#1-VER-4-BUILD#
 
 		# Separate development changes from user changes
-		1i#3-DEV-0# <!-- EOF -->
-
-		# Map commit type to version bump
-		/^\(revert: \)*[a-z]*\((.*)\)*!: /  i#1-VER-1 MAJOR#
-		'"${MAP_TYPE_TO_VER}"'
+		1i#3-DEV-0-EOF#
 
 		# Remove double reverts
 		s/^\(revert: revert: \)*//
+
+		# Map commit type to version bump
+		/^\(revert: \)*[a-z]*\((.*)\)*!: /  i#1-VER-1-MAJOR#
+		'"${MAP_TYPE_TO_VER}"'
 
 		# Map commit type to changelog section.
 		# Changes with impact on end users
@@ -167,26 +163,27 @@ gen_chlog()
 
 		# Mark unknown commit types
 		/^#/!s/^/#3-DEV-99 Unknown#/
-	' | sort -u | debug "${CHLOG_DBG}" | sed -n "
+	' | sort -u | sed 's/^#\([^#]*\)#/\1\n/' | sed -n "
 		# Print version
-		1s/^#1-VER-1 MAJOR#/## ${major} (${date})/p
-		1s/^#1-VER-2 MINOR#/## ${minor} (${date})/p
-		1s/^#1-VER-3 PATCH#/## ${patch} (${date})/p
-		1s/^#1-VER-4 BUILD#/## ${patch} (${date})/p
-	"'
-		# Extract changelog section
-		s/^#[23]-[^ ]* .*#/&\n/
-		# Save current section for later
-		H; s/\n.*$//; x
-		# Skip duplicated section
-		s/^\([^\n]*\)\n\1/\n/
+		1 {
+			s/^1-VER-1-MAJOR/## ${major} (${date})/p
+			s/^1-VER-2-MINOR/## ${minor} (${date})/p
+			s/^1-VER-3-PATCH/## ${patch} (${date})/p
+			s/^1-VER-4-BUILD/## ${patch} (${date})/p
+			n; n
+		}
 
-		# Print with section
-		s/^[^\n]*\n#[^ ]* \(.*\)#\n/\n### \1\n\n- /p
-		# Print without section
-		s/^\n\n/- /p
-		# Print comments
-		s/^#[23]-.*#/\n/p
+		# Print comment
+		/^3-DEV-0-EOF$/i${EOF_COMMENT}
+	"'
+		# Save current section for later
+		H; x
+		# Skip duplicated section
+		s/^\([^\n]*\)\n\1*//
+		# Print section
+		s/^[^ ]* \(.*\)$/\n### \1\n/p
+		# Print change
+		n; /^$/!s/^/- /p
 	'
 }
 
@@ -216,11 +213,11 @@ then
 
 	# Prepend generated changes to changelog
 	{
-		printf 'Changelog\n=========\n\n\n'
-		sed '/<!-- EOF -->/,$d' -- "${CHLOG_TMP}"
+		printf '# Changelog\n\n\n'
+		sed '/<!-- EOF: .* -->/,$d' -- "${CHLOG_TMP}"
 		if [ -r "${CHLOG}" ]
 		then
-			tail -n +4 -- "${CHLOG}"
+			tail -n +3 -- "${CHLOG}"
 		fi
 	} > "${CHLOG_NEW}"
 	mv -f -- "${CHLOG_NEW}" "${CHLOG}"
@@ -229,23 +226,23 @@ then
 	# Create release commit and tag
 	sed '
 		s/^## \([^ ]*\) .*$/release: \1/
-		/^<!-- EOF -->$/,/^$/d
+		/^<!-- .* -->$/,/^$/d
 	' -- "${CHLOG_TMP}" | git commit -F -
 	sed '
 		s/^## \([^ ]*\) .*$/Release \1/
-		/^<!-- EOF -->$/,/^$/d
+		/^<!-- .* -->$/,/^$/d
 	' -- "${CHLOG_TMP}" | git tag -aF - "v${version}"
 elif [ "${1-}" = changelog ] && [ "${2-}" = - ]
 then
-	printf 'Changelog\n=========\n\n\n'
+	printf '# Changelog\n\n\n'
 	gen_chlog 'Unreleased'
 elif [ "${1-}" = changelog ] && [ -n "${2-}" ]
 then
-	printf 'Changelog\n=========\n\n\n'
+	printf '# Changelog\n\n\n'
 	gen_chlog "${2#v}" "${2}"
 elif [ "${1-}" = changelog ]
 then
-	printf 'Changelog\n=========\n\n\n'
+	printf '# Changelog\n\n\n'
 	gen_chlog 'Unreleased'
 	for tag in $(git tag -l --sort=-v:refname 'v*.*.*')
 	do
@@ -259,6 +256,7 @@ else
 	printf "${PROGNAME} %s\\n    %s\\n\\n" \
 	'[release]' 'Create new release' \
 	'changelog' 'Print full changelog' \
+	'changelog [REF]' 'Print changelog for REF' \
 	'version [REF]' 'Print proposed version for REF' \
 	'help' 'Print help' >&2
 fi
