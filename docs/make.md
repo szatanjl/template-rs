@@ -33,6 +33,10 @@ Targets
 
   Build and run project
 
+- `make dev`
+
+  Run project in development mode, without building
+
 - `make docker`
 
   Build docker image
