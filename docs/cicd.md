@@ -17,6 +17,14 @@ Workflows
 
   Release project
 
+- `deploy-release`
+
+  Deploy release
+
+- `deploy-commit`
+
+  Deploy commit
+
 
 Helper Actions
 --------------
@@ -93,3 +101,11 @@ Release Actions
 - `release-docker`
 
   Push docker image to registry
+
+
+Deploy Actions
+--------------
+
+- `deploy`
+
+  Deploy
