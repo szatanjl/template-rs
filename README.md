@@ -7,5 +7,12 @@ a standardized structure, build process, and development workflow.
 
 To begin:
 
-1. Edit this README
-2. Start your project
+1. Update LICENSE and all mentions of it (`grep LICENSE`)
+2. Edit this README
+3. Start your project
+
+
+License
+-------
+
+This project is licensed under the [MIT license](LICENSE).
