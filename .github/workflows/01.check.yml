@@ -164,3 +164,21 @@ jobs:
           values: >
             ${{ needs.lint.result }} ${{ needs.lint.outputs.outcome }}
             ${{ needs.test.result }} ${{ needs.test.outputs.outcome }}
+
+  parents:
+    name: Check Parent Commits Test Results
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - name: Prepare Job
+        run: |
+          git clone -n --filter=tree:0 --progress -- "${REPO}" .
+          git sparse-checkout set --no-cone .github/actions
+          git checkout --progress
+      - name: Check Parent Commits Test Results
+        uses: ./.github/actions/status-inherit
+        with:
+          sha: ${{ inputs.sha || github.sha }}
+          name: check-parents
+          description: Status of all parent commits checks combined
+          names_parents: check check-parents
