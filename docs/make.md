@@ -31,7 +31,7 @@ Targets
 
 - `make check`
 
-  Run linters and tests
+  Check code formatting, and run linters and tests
 
 - `make test`
 
@@ -40,6 +40,14 @@ Targets
 - `make lint`
 
   Lint project
+
+- `make fmt`
+
+  Format code
+
+- `make fmt-check`
+
+  Check code formatting
 
 - `make run`
 
