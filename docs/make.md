@@ -178,6 +178,10 @@ in config.mk file or via CLI:
 
   Options passed to `${CARGO} package`.  Default: empty
 
+- `CARGO_TEST_FLAGS`
+
+  Options passed to `${CARGO} test`.  Default: empty
+
 - `CARGO_RUN_FLAGS`
 
   Options passed to `${CARGO} run`.  Default: empty
