@@ -192,6 +192,10 @@ in config.mk file or via CLI:
   Options passed to `${CARGO} clippy`.
   Default: `${CARGO_LINT_ALL_FLAGS} ...`
 
+- `CARGO_FMT_FLAGS`
+
+  Options passed to `${CARGO} fmt`.  Default: empty
+
 - `CARGO_RUN_FLAGS`
 
   Options passed to `${CARGO} run`.  Default: empty
