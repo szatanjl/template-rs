@@ -37,6 +37,10 @@ Commands
 
   Build and run project
 
+- `cargo clippy`
+
+  Lint project
+
 - `cargo clean`
 
   Remove built files
