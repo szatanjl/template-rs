@@ -29,6 +29,10 @@ Commands
 
   Build cargo crate
 
+- `cargo t[est]`
+
+  Run tests
+
 - `cargo r[un]`
 
   Build and run project

@@ -11,6 +11,7 @@ CARGO = cargo
 CARGO_BUILD_FLAGS =
 CARGO_FETCH_FLAGS =
 CARGO_PKG_FLAGS =
+CARGO_TEST_FLAGS =
 CARGO_RUN_FLAGS =
 CARGO_CLEAN_FLAGS =
 
@@ -129,8 +130,8 @@ uninstall-man-lib:
 
 check: fmt-check lint test
 
-test: tests/example.sh
-	$(SHELL) $<
+test:
+	$(CARGO) test $(CARGO_TEST_FLAGS)
 
 lint: make/lint.sh
 	./$<
