@@ -33,6 +33,17 @@ How It Works?
 How does it work?
 
 
+Questions
+---------
+
+Before asking a question, check out [documentation](docs/index.md)
+and issues labeled "question".
+
+Cannot find answer you are looking for?
+[Submit an issue](docs/CONTRIBUTING.md#issues) or write an email to
+<questions@example.com>.
+
+
 Contributing
 ------------
 

@@ -6,6 +6,7 @@ Files
     |-- docs/
     |   |-- CONTRIBUTING.md
     |   |-- SECURITY.md
+    |   |-- SUPPORT.md
     |   |-- index.md
     |   `-- ...
     |-- LICENSE
@@ -38,6 +39,10 @@ Documentation
 - `docs/SECURITY.md`
 
   Security policy
+
+- `docs/SUPPORT.md`
+
+  How to get support
 
 
 Repository

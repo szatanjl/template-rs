@@ -27,6 +27,7 @@ Contributing and Support
 
 - [Contribution guidelines](CONTRIBUTING.md)
 - [Security policy](SECURITY.md)
+- [Support](SUPPORT.md)
 
 
 License

@@ -11,6 +11,16 @@ Participate in discussions.
 Submit a new [issue](#issues) or open a [pull request](#pull-requests).
 
 
+Questions
+---------
+
+Before asking a question, check out [documentation](index.md) and issues
+labeled "question".
+
+Cannot find answer you are looking for?
+[Submit an issue](#issues) or write an email to <questions@example.com>.
+
+
 Reporting Security Vulnerability
 --------------------------------
 
@@ -25,7 +35,7 @@ See [security policy](SECURITY.md) for details.
 Issues
 ------
 
-Found a bug?  Have a feature request?
+Found a bug?  Have a feature request?  Got a question?
 Fill out appropriate template and open an issue.
 
 Before submitting an issue:
