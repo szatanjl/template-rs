@@ -1,0 +1,10 @@
+[package]
+name = "project_name"
+version = "0.0.0"
+description = "Rust Project Template"
+license = "MIT"
+publish = false
+edition = "2021"
+rust-version = "1.56"
+
+[dependencies]
