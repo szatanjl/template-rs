@@ -20,6 +20,7 @@ Development
 - [Files](files.md)
 - [make](make.md)
 - [docker](docker.md)
+- [CI/CD](cicd.md)
 - [Git discipline](git.md)
 - [Style guides](styleguides.md)
 
