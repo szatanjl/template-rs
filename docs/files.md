@@ -10,6 +10,7 @@ Files
     |   |-- index.md
     |   `-- ...
     |-- make/
+    |   |-- release.sh
     |   |-- version.sh
     |   `-- ...
     |-- man/
@@ -98,12 +99,16 @@ Build
   Specifies files that docker should ignore
 
 
-Versioning
-----------
+Versioning and Releasing
+------------------------
 
 - `make/version.sh`
 
   Shell script generating version information
+
+- `make/release.sh`
+
+  Shell script for creating project releases
 
 - `version.mk`
 
