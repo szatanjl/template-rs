@@ -31,11 +31,15 @@ Targets
 
 - `make check`
 
-  Run tests
+  Run linters and tests
 
 - `make test`
 
   Run tests
+
+- `make lint`
+
+  Lint project
 
 - `make run`
 
