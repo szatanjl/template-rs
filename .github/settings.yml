@@ -1,6 +1,6 @@
 repository:
-  name: template
-  description: Project Template
+  name: template-rs
+  description: Rust Project Template
   homepage: https://templates.lszj.org
   topics: templates
   default_branch: main
