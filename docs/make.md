@@ -49,6 +49,26 @@ Targets
 
   Install man pages for libraries
 
+- `make uninstall`
+
+  Uninstall all files
+
+- `make uninstall-bin`
+
+  Uninstall binaries
+
+- `make uninstall-lib`
+
+  Uninstall libraries
+
+- `make uninstall-man-bin`
+
+  Uninstall man pages for binaries
+
+- `make uninstall-man-lib`
+
+  Uninstall man pages for libraries
+
 - `make check`
 
   Check code formatting, and run linters and tests

@@ -41,6 +41,8 @@ all:
 .PHONY: all bin lib
 .PHONY: dist version release
 .PHONY: install install-bin install-lib install-man-bin install-man-lib
+.PHONY: uninstall uninstall-bin uninstall-lib
+.PHONY: uninstall-man-bin uninstall-man-lib
 .PHONY: check test lint fmt fmt-check
 .PHONY: run dev
 .PHONY: docker docker-run
@@ -88,6 +90,23 @@ install-man-bin: man/hello.1
 
 install-man-lib:
 	mkdir -p $(DESTDIR)$(man3dir)
+
+uninstall: uninstall-man-lib uninstall-man-bin
+uninstall: uninstall-lib uninstall-bin
+
+uninstall-bin:
+	rm -f $(DESTDIR)$(bindir)/hello
+	-cd $(DESTDIR)/ && rmdir -p .$(bindir)
+
+uninstall-lib:
+	-cd $(DESTDIR)/ && rmdir -p .$(libdir)
+
+uninstall-man-bin:
+	rm -f $(DESTDIR)$(man1dir)/hello.1
+	-cd $(DESTDIR)/ && rmdir -p .$(man1dir)
+
+uninstall-man-lib:
+	-cd $(DESTDIR)/ && rmdir -p .$(man3dir)
 
 check: fmt-check lint test
 
