@@ -7,10 +7,34 @@ a standardized structure, build process, and development workflow.
 
 To begin:
 
-1. Update LICENSE and all mentions of it (`grep LICENSE`)
-2. Update contact information and email addresses (`grep @example.com`)
-3. Edit this README
-4. Start your project
+1. Change `project_name` in Makefile
+2. Update LICENSE and all mentions of it (`grep LICENSE`)
+3. Update contact information and email addresses (`grep @example.com`)
+4. Edit this README
+5. Start your project
+
+Note: Project name must only contain ASCII lowercase letters, digits,
+periods, and hyphens.  It must start with a letter, must not end with
+a period nor hyphen, and must not contain two adjacent periods nor
+hyphens.
+
+Regex: `[a-z]([-.]?[0-9a-z]+)*`
+
+Rationale: This is the most portable naming convention that is also
+human and machine friendly.
+
+- It is compatible with most character sets and encodings:
+  ASCII, Unicode, UTF-8, base64-url
+- It is case-insensitive
+- It can be used as a filename on most filesystems
+  It is compatible with POSIX portable filename character set
+- It is URL-safe
+- It is compatible with docker image naming convention
+- It is compatible with make, shell, markdown, and other programming
+  and markup languages.  No spaces, or any special characters which
+  could be problematic to handle
+- It can be used as an identifier in programming languages.
+  May only require changing a hyphen ('-') to an underscore ('\_')
 
 
 Quick Start

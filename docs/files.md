@@ -9,6 +9,8 @@ Files
     |   |-- SUPPORT.md
     |   |-- index.md
     |   `-- ...
+    |-- .dockerignore
+    |-- Dockerfile
     |-- LICENSE
     |-- Makefile
     `-- README.md
@@ -52,6 +54,14 @@ Build
 - `Makefile`
 
   Build instructions for make utility
+
+- `Dockerfile`
+
+  Build instructions for docker utility
+
+- `.dockerignore`
+
+  Specifies files that docker should ignore
 
 
 Repository

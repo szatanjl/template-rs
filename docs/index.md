@@ -19,6 +19,7 @@ Development
 
 - [Files](files.md)
 - [make](make.md)
+- [docker](docker.md)
 - [Git discipline](git.md)
 - [Style guides](styleguides.md)
 
