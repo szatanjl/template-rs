@@ -85,6 +85,10 @@ Build Actions
 
   Build binary tarballs
 
+- `make-crate`
+
+  Build cargo crate
+
 - `make-docker`
 
   Build docker image
