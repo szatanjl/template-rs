@@ -13,6 +13,10 @@ Workflows
 
   Run tests
 
+- `release`
+
+  Release project
+
 
 Helper Actions
 --------------
@@ -20,6 +24,10 @@ Helper Actions
 - `checkout`
 
   Checkout project code
+
+- `get-hash`
+
+  Get commit hash from ref
 
 - `status-get`
 
@@ -48,3 +56,40 @@ Build Actions
 - `make-lint`
 
   Run formatters and linters
+
+- `make-version`
+
+  Generate version information
+
+- `make-src`
+
+  Build source tarballs
+
+- `make-bin`
+
+  Build binary tarballs
+
+- `make-docker`
+
+  Build docker image
+
+
+
+Release Actions
+---------------
+
+- `release-create`
+
+  Create new release (and delete old one if needed)
+
+- `release-delete`
+
+  Delete release
+
+- `release-files`
+
+  Release files
+
+- `release-docker`
+
+  Push docker image to registry
