@@ -41,6 +41,14 @@ Commands
 
   Lint project
 
+- `cargo fmt`
+
+  Format code
+
+- `cargo fmt --check`
+
+  Check code formatting
+
 - `cargo clean`
 
   Remove built files

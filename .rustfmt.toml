@@ -1,0 +1,26 @@
+# Line Length
+max_width = 72
+comment_width = 72
+doc_comment_code_block_width = 72
+use_small_heuristics = "Max"
+
+# Indentation and whitespace
+hard_tabs = true
+tab_spaces = 8
+blank_lines_upper_bound = 2
+newline_style = "Unix"
+
+# Comments
+normalize_comments = true
+normalize_doc_attributes = true
+format_code_in_doc_comments = true
+wrap_comments = true
+
+# Misc
+group_imports = "StdExternalCrate"
+reorder_impl_items = true
+force_multiline_blocks = true
+binop_separator = "Back"
+hex_literal_case = "Upper"
+use_field_init_shorthand = true
+condense_wildcard_suffixes = true

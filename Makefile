@@ -29,6 +29,7 @@ CARGO_LINT_CODE_FLAGS = $(CARGO_LINT_ALL_FLAGS) \
 	-D clippy::unwrap-used \
 	-D clippy::expect-used \
 	-D clippy::indexing-slicing
+CARGO_FMT_FLAGS =
 CARGO_RUN_FLAGS =
 CARGO_CLEAN_FLAGS =
 
@@ -156,9 +157,11 @@ lint: make/lint.sh
 	./$<
 
 fmt: make/fmt.sh
+	$(CARGO) fmt $(CARGO_FMT_FLAGS)
 	./$<
 
 fmt-check: make/fmt-check.sh
+	$(CARGO) fmt --check $(CARGO_FMT_FLAGS)
 	./$<
 
 run:
