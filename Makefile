@@ -20,7 +20,7 @@ all:
 
 
 .PHONY: all bin lib
-.PHONY: dist version
+.PHONY: dist version release
 .PHONY: docker docker-run
 .PHONY: clean distclean cleanall
 
@@ -46,6 +46,9 @@ version: make/version.sh
 		'PKGNAME = $$(NAME)-$$(VERSION)' \
 		'DOCKERNAME = $$(NAME):$$(VERSION)'; \
 	} >| version.mk
+
+release: make/release.sh
+	./$<
 
 docker:
 	$(DOCKER) build $(DOCKER_FLAGS) -t $(DOCKERNAME) .

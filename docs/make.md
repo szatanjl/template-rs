@@ -25,6 +25,10 @@ Targets
 
   Generate version information
 
+- `make release`
+
+  Create new release
+
 - `make docker`
 
   Build docker image
