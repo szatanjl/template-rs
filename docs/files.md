@@ -19,11 +19,13 @@ Files
     |   `-- ...
     |-- man/
     |-- src/
-    |   |-- main.sh
+    |   |-- main.rs
     |   `-- ...
+    |-- target/ (generated)
     |-- tests/
     |-- .dockerignore
     |-- .gitignore
+    |-- Cargo.lock (generated)
     |-- Cargo.toml
     |-- Dockerfile
     |-- LICENSE
@@ -40,7 +42,7 @@ Source Code
 
   Source code
 
-- `src/main.sh`
+- `src/main.rs`
 
   Program entry point
 
@@ -92,6 +94,10 @@ Build
 
   Rust project metadata and dependencies
 
+- `Cargo.lock`
+
+  Locked dependencies versions
+
 - `make/`
 
   Scripts and other files used during build and release processes
@@ -111,6 +117,10 @@ Build
 - `.dockerignore`
 
   Specifies files that docker should ignore
+
+- `target/`
+
+  Built files: binaries, libraries, dependencies, and packages
 
 
 Versioning and Releasing

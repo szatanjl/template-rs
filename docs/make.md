@@ -17,6 +17,10 @@ Targets
 
   Build libraries
 
+- `make deps`
+
+  Fetch dependencies
+
 - `make dist`
 
   Build distribution tarball
@@ -93,10 +97,6 @@ Targets
 
   Build and run project
 
-- `make dev`
-
-  Run project in development mode, without building
-
 - `make docker`
 
   Build docker image
@@ -111,12 +111,12 @@ Targets
 
 - `make distclean`
 
-  Remove built files and configuration files
+  Remove built files, configuration files, and Cargo.lock
 
 - `make cleanall`
 
-  Remove built files, configuration files, and generated version
-  information
+  Remove built files, configuration files, Cargo.lock,
+  and generated version information
 
 
 Configuration
@@ -153,6 +153,26 @@ in config.mk file or via CLI:
 
   Options passed to the compression utility.  Default: empty
 
+- `CARGO`
+
+  Rust package manager to use.  Default: `cargo`
+
+- `CARGO_FLAGS`
+
+  Options passed to `${CARGO} build`.  Default: empty
+
+- `CARGO_FETCH_FLAGS`
+
+  Options passed to `${CARGO} fetch`.  Default: empty
+
+- `CARGO_RUN_FLAGS`
+
+  Options passed to `${CARGO} run`.  Default: empty
+
+- `CARGO_CLEAN_FLAGS`
+
+  Options passed to `${CARGO} clean`.  Default: empty
+
 - `RUN_FLAGS`
 
   Arguments passed to executed binary.  Default: empty
@@ -164,7 +184,11 @@ in config.mk file or via CLI:
 
 - `DOCKER_FLAGS`
 
-  Options passed to `${DOCKER} build`.  Default: empty
+  Options passed to `${DOCKER} build`.  Default:
+
+      --build-arg CARGO='${CARGO}'
+      --build-arg CARGO_FLAGS='${CARGO_FLAGS}'
+      --build-arg CARGO_FETCH_FLAGS='${CARGO_FETCH_FLAGS}'
 
 - `DOCKER_RUN_FLAGS`
 

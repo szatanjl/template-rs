@@ -1,11 +1,14 @@
 # Ignore built files
-/hello
+/target
 
 # Ignore dist files
 /project_name
 /project_name-*
 /project_name.*
 /version.mk
+
+# Ignore package manager (cargo) files
+/Cargo.lock
 
 # Ignore configuration files
 /config.mk

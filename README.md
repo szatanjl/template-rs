@@ -11,10 +11,12 @@ To begin:
    and .gitignore
 2. Configure repository files in .github/ directory
 3. Update Cargo.toml
-4. Update LICENSE and all mentions of it (`grep LICENSE`)
-5. Update contact information and email addresses (`grep @example.com`)
-6. Edit this README and replace all `<...>` placeholders
-7. Start your project
+4. Optionally remove `Cargo.lock` from `make distclean`, .dockerignore,
+   and .gitignore if you want to lock particular dependencies versions
+5. Update LICENSE and all mentions of it (`grep LICENSE`)
+6. Update contact information and email addresses (`grep @example.com`)
+7. Edit this README and replace all `<...>` placeholders
+8. Start your project
 
 Note: Project name must only contain ASCII lowercase letters, digits,
 periods, and hyphens.  It must start with a letter, must not end with
@@ -55,21 +57,18 @@ Build and Install from Source
 1. Install build dependencies (these can be removed after build)
 
    - make
+   - rust + cargo (>= 1.56)
 
-2. Install runtime dependencies
-
-   - sh
-
-3. Download and extract source code
+2. Download and extract source code
 
        # packages available also in .tar.zst and .zip formats
        curl -LO https://<URL>/<PKGNAME>/download/<PKGNAME>.src.tar.gz
        tar -xzf <PKGNAME>.src.tar.gz
 
-4. Build and install
+3. Build and install
 
        cd <PKGNAME>
-       make
+       make CARGO_FLAGS=-r
        make install
 
 
@@ -105,12 +104,13 @@ Development
 
 1. Install required dependencies
 
-   - sh
-   - make
+   - rust + cargo (>= 1.56)
    - git
 
 2. Install optional dependencies
 
+   - sh: Run make scripts
+   - make: Build using make, which wraps cargo commands and adds more
    - docker: Build docker image
 
 3. Clone repository
@@ -119,9 +119,9 @@ Development
 
 4. [Configure make](docs/make.md#configuration)
 
-5. Run project in development mode
+5. Build and run project
 
-       make dev
+       cargo run
 
 See [documentation](docs/index.md#development) for details.
 
