@@ -101,6 +101,11 @@ Targets
 
   Build and run project
 
+- `make dev`
+
+  Run project in development mode, rebuild and restart changes
+  automatically
+
 - `make docker`
 
   Build docker image
