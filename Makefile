@@ -12,6 +12,23 @@ CARGO_BUILD_FLAGS =
 CARGO_FETCH_FLAGS =
 CARGO_PKG_FLAGS =
 CARGO_TEST_FLAGS =
+CARGO_LINT_ALL_FLAGS = -- \
+	-D warnings -D clippy::all -D clippy::pedantic \
+	-D non-ascii-idents \
+	-D clippy::non-ascii-literal \
+	-D clippy::dbg-macro \
+	-D clippy::default-union-representation \
+	-D clippy::else-if-without-else \
+	-D clippy::mixed-read-write-in-expression \
+	-D clippy::try-err
+CARGO_LINT_CODE_FLAGS = $(CARGO_LINT_ALL_FLAGS) \
+	-D clippy::panic \
+	-D clippy::todo \
+	-D clippy::unimplemented \
+	-D clippy::unreachable \
+	-D clippy::unwrap-used \
+	-D clippy::expect-used \
+	-D clippy::indexing-slicing
 CARGO_RUN_FLAGS =
 CARGO_CLEAN_FLAGS =
 
@@ -134,6 +151,8 @@ test:
 	$(CARGO) test $(CARGO_TEST_FLAGS)
 
 lint: make/lint.sh
+	$(CARGO) clippy --all-targets $(CARGO_LINT_ALL_FLAGS)
+	$(CARGO) clippy $(CARGO_LINT_CODE_FLAGS)
 	./$<
 
 fmt: make/fmt.sh

@@ -182,6 +182,16 @@ in config.mk file or via CLI:
 
   Options passed to `${CARGO} test`.  Default: empty
 
+- `CARGO_LINT_ALL_FLAGS`
+
+  Options passed to `${CARGO} clippy --all-targets`.
+  Default: `-- -D warnings -D clippy::all -D clippy::pedantic ...`
+
+- `CARGO_LINT_CODE_FLAGS`
+
+  Options passed to `${CARGO} clippy`.
+  Default: `${CARGO_LINT_ALL_FLAGS} ...`
+
 - `CARGO_RUN_FLAGS`
 
   Options passed to `${CARGO} run`.  Default: empty
