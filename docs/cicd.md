@@ -21,6 +21,10 @@ Helper Actions
 
   Set commit status (or skip if status already set)
 
+- `status-inherit`
+
+  Inherit status from parent commits
+
 
 Build Actions
 -------------
