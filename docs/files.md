@@ -17,6 +17,7 @@ Files
     |-- src/
     |   |-- main.sh
     |   `-- ...
+    |-- tests/
     |-- .dockerignore
     |-- .gitignore
     |-- Dockerfile
@@ -37,6 +38,10 @@ Source Code
 - `src/main.sh`
 
   Program entry point
+
+- `tests/`
+
+  Tests
 
 
 Documentation
