@@ -1,4 +1,4 @@
-name: 01 - Run Tests
+name: 02 - Run Tests
 run-name: Run Tests -- ${{ inputs.sha || github.ref }}
 concurrency: check-${{ inputs.sha || github.event.inputs.sha || github.sha }}
 permissions:
@@ -35,14 +35,10 @@ on:
         description: Force rerun
         type: boolean
         default: false
-
-  pull_request:
-    branches:
-      - main
-
-  push:
-    branches:
-      - main
+      _wait_for:
+        # Used by .github/actions/dispatch-check to run tests in order
+        description: DO NOT USE.  Concurrency group of tests to wait for
+        type: string
 
 
 jobs:
@@ -167,6 +163,7 @@ jobs:
 
   parents:
     name: Check Parent Commits Test Results
+    concurrency: check-${{ inputs._wait_for || github.event.inputs._wait_for }}
     runs-on: ubuntu-latest
     timeout-minutes: 1
     steps:
