@@ -23,7 +23,7 @@ all:
 
 .PHONY: all bin lib
 .PHONY: dist version release
-.PHONY: check test lint
+.PHONY: check test lint fmt fmt-check
 .PHONY: run dev
 .PHONY: docker docker-run
 .PHONY: clean distclean cleanall
@@ -54,12 +54,18 @@ version: make/version.sh
 release: make/release.sh
 	./$<
 
-check: lint test
+check: fmt-check lint test
 
 test: tests/example.sh
 	$(SHELL) $<
 
 lint: make/lint.sh
+	./$<
+
+fmt: make/fmt.sh
+	./$<
+
+fmt-check: make/fmt-check.sh
 	./$<
 
 run: hello
