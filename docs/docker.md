@@ -52,3 +52,7 @@ via CLI `--build-arg` flag:
 - `BUILDIMG`
 
   Image used for building the project.  Default: `${BASEIMG}`
+
+- `RUNIMG`
+
+  Image used for running the project.  Default: `${BASEIMG}`

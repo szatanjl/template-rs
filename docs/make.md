@@ -29,6 +29,10 @@ Targets
 
   Create new release
 
+- `make run`
+
+  Build and run project
+
 - `make docker`
 
   Build docker image
@@ -84,6 +88,10 @@ in config.mk file or via CLI:
 - `ZIPFLAGS`
 
   Options passed to the compression utility.  Default: empty
+
+- `RUN_FLAGS`
+
+  Arguments passed to executed binary.  Default: empty
 
 - `DOCKER`
 
