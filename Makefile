@@ -54,7 +54,7 @@ all:
 .PHONY: uninstall uninstall-bin uninstall-lib
 .PHONY: uninstall-man-bin uninstall-man-lib
 .PHONY: check test lint fmt fmt-check
-.PHONY: run
+.PHONY: run dev
 .PHONY: docker docker-run
 .PHONY: clean distclean cleanall
 
@@ -143,6 +143,9 @@ fmt-check: make/fmt-check.sh
 
 run:
 	$(CARGO) run $(CARGO_RUN_FLAGS) -- $(RUN_FLAGS)
+
+dev:
+	$(CARGO) watch -x run $(CARGO_RUN_FLAGS)-- $(RUN_FLAGS)
 
 docker:
 	$(DOCKER) build $(DOCKER_FLAGS) -t $(DOCKERNAME) .
