@@ -29,6 +29,26 @@ Targets
 
   Create new release
 
+- `make install`
+
+  Install all files
+
+- `make install-bin`
+
+  Install binaries
+
+- `make install-lib`
+
+  Install libraries
+
+- `make install-man-bin`
+
+  Install man pages for binaries
+
+- `make install-man-lib`
+
+  Install man pages for libraries
+
 - `make check`
 
   Check code formatting, and run linters and tests
@@ -134,3 +154,82 @@ in config.mk file or via CLI:
 - `DOCKER_CMD`
 
   Command executed by `${DOCKER} run`.  Default: empty
+
+
+Installation
+------------
+
+`make install` can be configured by setting following variables
+in config.mk file or via CLI:
+
+- `DESTDIR`
+
+  Destination directory.  Default: empty
+
+- `prefix`
+
+  Prefix used in constructing all default values of directories below.
+  Default: `/usr/local`
+
+- `exec_prefix`
+
+  Prefix used in constructing some default values of directories below.
+  Default: `${prefix}`
+
+- `bindir`
+
+  Directory for installing binaries for users.
+  Default: `${exec_prefix}/bin`
+
+- `sbindir`
+
+  Directory for installing binaries for system administrators.
+  Default: `${exec_prefix}/sbin`
+
+- `libexecdir`
+
+  Directory for installing binaries run by other programs, not by users.
+  Default: `${exec_prefix}/libexec`
+
+- `libdir`
+
+  Directory for installing libraries.  Default: `${exec_prefix}/lib`
+
+- `includedir`
+
+  Directory for installing C headers.  Default: `${prefix}/include`
+
+- `datarootdir`
+
+  Root directory for installing read-only architecture-independent data
+  files.  Default: `${prefix}/share`
+
+- `datadir`
+
+  Directory for installing read-only data files.
+  Default: `${datarootdir}`
+
+- `sysconfdir`
+
+  Directory for installing read-only configuration files.
+  Default: `${prefix}/etc`
+
+- `localstatedir`
+
+  Directory for installing persistent modifiable data files.
+  Default: `${prefix}/var`
+
+- `runstatedir`
+
+  Directory for installing non-persistent modifiable data files.
+  Default: `${prefix}/run`
+
+- `mandir`
+
+  Root Directory for installing man pages.
+  Default: `${datarootdir}/man`
+
+- `man1dir`, `man2dir`, `man3dir`, ...
+
+  Directories for installing man pages into specific sections.
+  Default: `${mandir}/man{1,2,3,...}`
