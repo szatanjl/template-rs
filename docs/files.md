@@ -10,10 +10,12 @@ Files
     |   |-- index.md
     |   `-- ...
     |-- .dockerignore
+    |-- .gitignore
     |-- Dockerfile
     |-- LICENSE
     |-- Makefile
-    `-- README.md
+    |-- README.md
+    `-- config.mk (optional)
 
 
 Documentation
@@ -55,6 +57,10 @@ Build
 
   Build instructions for make utility
 
+- `config.mk`
+
+  make utility configuration
+
 - `Dockerfile`
 
   Build instructions for docker utility
@@ -70,3 +76,7 @@ Repository
 - `.git/`
 
   Git version control system metadata
+
+- `.gitignore`
+
+  Specifies untracked files that git should ignore

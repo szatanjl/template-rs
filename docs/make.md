@@ -17,11 +17,20 @@ Targets
 
   Run built docker image
 
+- `make clean`
+
+  Remove built files
+
+- `make distclean`
+
+  Remove built files and configuration files
+
 
 Configuration
 -------------
 
-`make` can be configured by setting following variables via CLI:
+`make` can be configured by setting following variables
+in config.mk file or via CLI:
 
 - `NAME`
 

@@ -4,3 +4,4 @@
 
 # Ignore git files
 /.git
+/.gitignore

@@ -9,8 +9,12 @@ DOCKER_CMD =
 
 all:
 
+-include config.mk
+
+
 .PHONY: all
 .PHONY: docker docker-run
+.PHONY: clean distclean
 
 all:
 
@@ -19,3 +23,8 @@ docker:
 
 docker-run:
 	$(DOCKER) run $(DOCKER_RUN_FLAGS) $(DOCKERNAME) $(DOCKER_CMD)
+
+clean:
+
+distclean: clean
+	rm -f config.mk
