@@ -12,6 +12,26 @@ To begin:
 3. Start your project
 
 
+Quick Start
+-----------
+
+Basic configuration.  Usage examples.
+
+See [documentation](docs/index.md) for details.
+
+
+Why?
+----
+
+Why use this software?  Comparison with other similar projects.
+
+
+How It Works?
+-------------
+
+How does it work?
+
+
 License
 -------
 
