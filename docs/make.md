@@ -25,6 +25,10 @@ Targets
 
   Build distribution tarball
 
+- `make crate`
+
+  Build cargo crate
+
 - `make version`
 
   Generate version information
@@ -164,6 +168,10 @@ in config.mk file or via CLI:
 - `CARGO_FETCH_FLAGS`
 
   Options passed to `${CARGO} fetch`.  Default: empty
+
+- `CARGO_PKG_FLAGS`
+
+  Options passed to `${CARGO} package`.  Default: empty
 
 - `CARGO_RUN_FLAGS`
 

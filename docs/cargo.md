@@ -25,6 +25,10 @@ Commands
 
   Build library
 
+- `cargo package`
+
+  Build cargo crate
+
 - `cargo r[un]`
 
   Build and run project
