@@ -17,3 +17,6 @@
 # Ignore CI/CD files
 /.github/actions
 /.github/workflows
+
+# Ignore repository configuration
+/.github

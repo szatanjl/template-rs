@@ -21,6 +21,7 @@ Development
 - [make](make.md)
 - [docker](docker.md)
 - [CI/CD](cicd.md)
+- [GitHub configuration](github.md)
 - [Git discipline](git.md)
 - [Style guides](styleguides.md)
 

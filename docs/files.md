@@ -146,3 +146,7 @@ Repository
 - `.gitignore`
 
   Specifies untracked files that git should ignore
+
+- `.github/`
+
+  GitHub repository configuration
