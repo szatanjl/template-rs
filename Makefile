@@ -15,13 +15,14 @@ DOCKER_CMD =
 
 all:
 
+-include version.mk
 -include config.mk
 
 
 .PHONY: all bin lib
-.PHONY: dist
+.PHONY: dist version
 .PHONY: docker docker-run
-.PHONY: clean distclean
+.PHONY: clean distclean cleanall
 
 all: bin lib
 
@@ -31,12 +32,20 @@ lib:
 
 dist:
 	mkdir $(PKGNAME)
-	find . ! -name . -prune ! -name .git ! -name $(PKGNAME) \
+	find . ! -name . -prune ! -name .git \
+		! -name $(PKGNAME) ! -name '$(NAME)-*' \
 		-exec cp -RPf {} $(PKGNAME) \;
 	cd $(PKGNAME) && $(MAKE) distclean
 	$(TAR) $(TARFLAGS) $(PKGNAME)
 	$(ZIP) $(ZIPFLAGS) $(PKGNAME).tar
 	rm -Rf $(PKGNAME).tar $(PKGNAME)
+
+version: make/version.sh
+	{ \
+	./$< && printf '%s\n' '' \
+		'PKGNAME = $$(NAME)-$$(VERSION)' \
+		'DOCKERNAME = $$(NAME):$$(VERSION)'; \
+	} >| version.mk
 
 docker:
 	$(DOCKER) build $(DOCKER_FLAGS) -t $(DOCKERNAME) .
@@ -45,11 +54,14 @@ docker-run:
 	$(DOCKER) run $(DOCKER_RUN_FLAGS) $(DOCKERNAME) $(DOCKER_CMD)
 
 clean:
-	rm -Rf $(PKGNAME).* $(PKGNAME)
+	rm -Rf $(PKGNAME).* $(PKGNAME) $(NAME)-*
 	rm -f hello
 
 distclean: clean
 	rm -f config.mk
+
+cleanall: distclean
+	rm -f version.mk
 
 
 hello: src/main.sh

@@ -3,7 +3,9 @@
 
 # Ignore dist files
 /project_name
+/project_name-*
 /project_name.*
+/version.mk
 
 # Ignore configuration files
 /config.mk

@@ -21,6 +21,10 @@ Targets
 
   Build distribution tarball
 
+- `make version`
+
+  Generate version information
+
 - `make docker`
 
   Build docker image
@@ -36,6 +40,11 @@ Targets
 - `make distclean`
 
   Remove built files and configuration files
+
+- `make cleanall`
+
+  Remove built files, configuration files, and generated version
+  information
 
 
 Configuration

@@ -9,6 +9,9 @@ Files
     |   |-- SUPPORT.md
     |   |-- index.md
     |   `-- ...
+    |-- make/
+    |   |-- version.sh
+    |   `-- ...
     |-- man/
     |-- src/
     |   |-- main.sh
@@ -19,7 +22,8 @@ Files
     |-- LICENSE
     |-- Makefile
     |-- README.md
-    `-- config.mk (optional)
+    |-- config.mk (optional)
+    `-- version.mk (generated)
 
 
 Source Code
@@ -73,6 +77,10 @@ Documentation
 Build
 -----
 
+- `make/`
+
+  Scripts and other files used during build and release processes
+
 - `Makefile`
 
   Build instructions for make utility
@@ -88,6 +96,18 @@ Build
 - `.dockerignore`
 
   Specifies files that docker should ignore
+
+
+Versioning
+----------
+
+- `make/version.sh`
+
+  Shell script generating version information
+
+- `version.mk`
+
+  Generated version information
 
 
 Repository
